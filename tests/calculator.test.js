@@ -1,14 +1,25 @@
-import { add } from '../src/calculator.js';
+import { divide } from "../src/calculator.js";
 
-describe('add', () => {
-it ('adds two positive numbers', () => {
-expect (add (2, 3)) .toBe (5);
+describe("divide function tests", () => {
+
+  test("divides two valid numbers correctly", () => {
+    expect(divide(2, 1)).toBe(2);
+  });
+
+  test("throws TypeError if first argument is not a number", () => {
+    expect(() => divide("2", 1)).toThrow(TypeError);
+  });
+
+  test("throws TypeError if argument is NaN", () => {
+    expect(() => divide(NaN, 1)).toThrow(TypeError);
+  });
+
+  test("throws RangeError when dividing by zero", () => {
+    expect(() => divide(5, 0)).toThrow(RangeError);
+  });
+
+  test("throws error if both arguments are invalid", () => {
+    expect(() => divide("a", "b")).toThrow();
+  });
+
 });
-it('adds negative numbers', () => {
-expect (add(-2, -3)) .toBe(-5);
-}) ;
-
-it ('throws when inputs are not numbers', () => {
-expect ( () => add('2', 3)).toThrow('add expects two numbers');
-}) ;
-}) ;
